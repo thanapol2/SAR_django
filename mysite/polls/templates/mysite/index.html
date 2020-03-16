@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <style>
+        body{
+            padding-top: 5rem;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Homepage</h1>
+
+        <table class="table">
+            <tr style="background-color:lightgray">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Telephone</th>
+            </tr>
+            {% for row in DJANGO_TEST %}
+               <tr>
+                   <td>{{row.p_id}}</td>
+                   <td>{{row.p_name}}</td>
+                   <td>{{row.p_surname}}</td>
+                   <td>{{row.p_tel}}</td>
+               </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
