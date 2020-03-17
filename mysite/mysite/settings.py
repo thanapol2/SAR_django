@@ -11,10 +11,18 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import configparser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+config = configparser.ConfigParser()
+config.sections()
+config.read('./config.ini')
+USER = config['CONFIG']['USER']
+PASS = config['CONFIG']['PASS']
+DB_IP = config['CONFIG']['DB_IP']
+SID = config['CONFIG']['SID']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -77,10 +85,10 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'xe',
-        'USER': 'ADBOOM',
-        'PASSWORD': 'boom125478',
-        'HOST': 'localhost',
+        'NAME': SID,
+        'USER': USER,
+        'PASSWORD': PASS,
+        'HOST': DB_IP,
         'PORT': '1521'
     },
     'OPTIONS': {
