@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>index</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -15,24 +15,28 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Homepage</h1>
-
+        {% if all_person %}
+        <h2 style="padding-bottom: 3rem;">Person Data</h2>
         <table class="table">
-            <tr style="background-color:lightgray">
+            <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Telephone</th>
             </tr>
-            {% for row in DJANGO_TEST %}
+
+            {% for row in all_person %}
                <tr>
                    <td>{{row.p_id}}</td>
-                   <td>{{row.p_name}}</td>
+                   <td><a href="/index/{{ row.p_id }}/">{{row.p_name}}</a></td>
                    <td>{{row.p_surname}}</td>
                    <td>{{row.p_tel}}</td>
                </tr>
             {% endfor %}
         </table>
+        {% else %}
+            <h3>Don't have any person data.</h3>
+        {% endif %}
     </div>
 
 

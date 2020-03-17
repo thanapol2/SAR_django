@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class person(models.Model):
+class Person(models.Model):
     p_id = models.IntegerField(primary_key=True)
     p_name = models.CharField(max_length=50, null = True)
     p_surname = models.CharField(max_length=50, null = True)

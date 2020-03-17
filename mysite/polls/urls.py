@@ -1,7 +1,9 @@
-from django.urls import path
+from django.urls import path, re_path
+from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    path('home/', views.index),
+    path('index/', views.index),
+    path('index/<int:p_id>/', views.detail),
     path('login/', views.login),
 ]
