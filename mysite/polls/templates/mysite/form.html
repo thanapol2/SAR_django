@@ -1,0 +1,22 @@
+{% extends "mysite/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <form action="" method="post" autocomplete="off">
+        {% csrf_token %}
+        {{form.p_name|as_crispy_field}}
+        {{form.p_surname|as_crispy_field}}
+        {{form.p_tel|as_crispy_field}}
+
+        <div class="row">
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i> Submit</button>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'person_list' %}" class="btn btn-secondary btn-block btn-lg">
+                    <li class="fas fa-stream"></li> Back to list
+                </a>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
