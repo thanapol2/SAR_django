@@ -1,12 +1,21 @@
 {% extends "mysite/base.html" %}
 
+{% block title %}List{% endblock %}
 {% block content %}
+    <style>
+        .hidetext {
+            -webkit-text-security: disc; /* Default */
+        }
+    </style>
+    <h1 class="display-4">Person List</h1>
     <table class="table table-borderless">
         <thead class="border-bottom font-weight-bold">
             <tr>
                 <td>Name</td>
                 <td>Surname</td>
                 <td>Tel</td>
+                <td>username</td>
+                <td>password</td>
                 <td>
                     <a href="{% url 'person_insert' %}" class="btn btn-outline-success">
                         <i class="fas fa-plus"></i>Add New
@@ -20,11 +29,13 @@
                     <td>{{ person.p_name }}</td>
                     <td>{{ person.p_surname }}</td>
                     <td>{{ person.p_tel }}</td>
+                    <td>{{ person.username }}</td>
+                    <td class="hidetext">{{ person.password }}</td>
                     <td>
-                        <a href="/person/person_edit/{{ person.p_id }}" class="btn text-secondary px-0">
+                        <a href="/person_edit/{{ person.p_id }}" class="btn text-secondary px-0">
                             <i class="far fa-edit fa-lg"></i>
                         </a>
-                        <form action="/person/person_del/{{ person.p_id }}" class="d-inline">
+                        <form action="/person_del/{{ person.p_id }}" class="d-inline">
                             {% csrf_token %}
                             <button type="submit" class="btn">
                                 <i class="far fa-trash-alt fa-lg text-danger float-right"></i>

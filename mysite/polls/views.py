@@ -3,6 +3,7 @@ from django.shortcuts import render,  redirect
 from django.http import HttpResponse
 from .models import Person
 from .forms import PersonForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 def person_list(request):
     context = {'person_list':Person.objects.all()}
@@ -24,26 +25,20 @@ def person_form(request, id='0'):
             form = PersonForm(request.POST, instance=person)
         if form.is_valid():
             form.save()
-        return redirect('/person/list/')
+        return redirect('/list/')
 
 def person_delete(request, id):
     person = Person.objects.get(pk=id)
     person.delete()
-    return redirect('/person/list/')
+    return redirect('/list/')
 
 
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            return redirect('/list/')
+    else:
+        form = AuthenticationForm()
 
-
-# def index(request):
-#     all_person = Person.objects.all()
-#     return render(request, 'mysite/index.html', {'all_person': all_person})
-
-# def detail(request, p_id):
-#     try:
-#         person = Person.objects.get(pk=p_id)
-#     except Person.DoesNotExist:
-#         raise Http404("Person does not exist")
-#     return render(request, 'mysite/detail.html', {'person': person})
-
-# def login(request):
-#     return render(request, 'mysite/login.html')
+    return render(request, 'mysite/login.html', {'form':form})
