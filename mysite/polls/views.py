@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import Person
 from .forms import PersonForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.core.files.storage import FileSystemStorage
 
 def person_list(request):
     context = {'person_list':Person.objects.all()}
@@ -42,3 +43,12 @@ def login(request):
         form = AuthenticationForm()
 
     return render(request, 'mysite/login.html', {'form':form})
+
+def upload(request):
+    if request.method == 'POST':
+        uploaded_file = request.FILES['document']
+        print('file name : ', uploaded_file.name)
+        print('file size : ', uploaded_file.size)
+        fs = FileSystemStorage()
+        fs.save(uploaded_file.name, uploaded_file)
+    return render(request, 'mysite/upload.html')

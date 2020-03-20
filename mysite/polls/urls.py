@@ -2,7 +2,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+
+
     path('login/', views.login),
+    path('upload/', views.upload),
 
     path('form/', views.person_form, name='person_insert'), # get and post req. for insert operation
     path('person_edit/<str:id>/', views.person_form, name='person_update'), # get and post req. for update operation
