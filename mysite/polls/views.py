@@ -1,8 +1,8 @@
 from django.shortcuts import render,  redirect
 # Create your views here.
 from django.http import HttpResponse
-from .models import Person
-from .forms import PersonForm
+from .models import Person, Document
+from .forms import PersonForm, DocForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.files.storage import FileSystemStorage
 
@@ -54,3 +54,17 @@ def upload(request):
         name = fs.save(uploaded_file.name, uploaded_file)
         context['url'] = fs.url(name)
     return render(request, 'mysite/upload.html', context)
+
+def doc_list(request):
+    docs = Document.objects.all()
+    return render(request, 'mysite/doc_list.html', {'docs':docs})
+
+def upload_doc(requst):
+    if requst.method == 'POST':
+        form = DocForm(requst.POST, requst.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('doc_list')
+    else:
+        form = DocForm()
+    return render(requst, 'mysite/upload_doc.html', {'form':form})

@@ -1,0 +1,12 @@
+{% extends "mysite/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2>Upload document</h2>
+    <form method="post" action="" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+        {{form.doc_name|as_crispy_field}}
+        {{form.doc_path|as_crispy_field}}
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+{% endblock %}

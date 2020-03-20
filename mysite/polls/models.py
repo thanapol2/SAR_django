@@ -10,3 +10,14 @@ class Person(models.Model):
     password = models.CharField(max_length=20, null = True)
     class Meta:
          db_table = "DJANGO_TEST"
+
+class Document(models.Model):
+    doc_id = models.IntegerField(primary_key=True)
+    doc_name = models.CharField(max_length=100)
+    doc_path = models.FileField(upload_to='files/')
+
+    class Meta:
+        db_table = "IT_DOC_FILES"
+
+    def ___str__(self):
+        return self.doc_name

@@ -1,0 +1,28 @@
+{% extends "mysite/base.html" %}
+
+{% block content %}
+    <h2>Documents List</h2>
+    <p>
+        <a href="{% url 'upload_doc' %}" class="btn btn-primary">Upload File</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ชื่อเอกสาร</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doc in docs %}
+            <tr>
+                <td>{{ doc.doc_name }}</td>
+                <td>
+                    <a href="/media/{{ doc.doc_path }}" class="btn btn-primary btn-block btn-sm col-md-4">
+                        Download File
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

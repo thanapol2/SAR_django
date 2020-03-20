@@ -8,6 +8,8 @@ urlpatterns = [
 
     path('login/', views.login),
     path('upload/', views.upload, name='upload'),
+    path('docs/', views.doc_list, name='doc_list'),
+    path('docs/upload', views.upload_doc, name='upload_doc'),
 
 
     path('form/', views.person_form, name='person_insert'), # get and post req. for insert operation

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Person
+from .models import Person, Document
 
 class PersonForm(forms.ModelForm):
     class Meta:
@@ -11,6 +11,15 @@ class PersonForm(forms.ModelForm):
             'p_tel':'Phone number',
             'username':'Username',
             'password':'Password'
+        }
+
+class DocForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ('doc_name','doc_path')
+        labels = {
+            'doc_name':'File name',
+            'doc_path':' '
         }
 
 
