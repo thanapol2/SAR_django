@@ -45,10 +45,12 @@ def login(request):
     return render(request, 'mysite/login.html', {'form':form})
 
 def upload(request):
+    context = {}
     if request.method == 'POST':
         uploaded_file = request.FILES['document']
         print('file name : ', uploaded_file.name)
         print('file size : ', uploaded_file.size)
         fs = FileSystemStorage()
-        fs.save(uploaded_file.name, uploaded_file)
-    return render(request, 'mysite/upload.html')
+        name = fs.save(uploaded_file.name, uploaded_file)
+        context['url'] = fs.url(name)
+    return render(request, 'mysite/upload.html', context)
