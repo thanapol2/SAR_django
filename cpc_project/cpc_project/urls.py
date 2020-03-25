@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import handler404
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 
@@ -25,3 +26,4 @@ urlpatterns = [
     # path('', TemplateView.as_view(template_name='home2.html'), name='home'),
     path('eva/login/', auth_views.LoginView.as_view(), name='login'),
 ]
+handler404 = 'eva.views.page404'

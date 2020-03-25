@@ -8,8 +8,8 @@ from django.http import Http404
 def index(request):
     return render(request,'eva/home.html')
 
-def page404(request):
-    return render(request, 'eva/404.html')
+def page404(request,exception):
+    return render(request, 'eva/404.html', status = 404)
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
