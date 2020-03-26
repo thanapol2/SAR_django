@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+{% block title %}หัวข้อย่อยที่2{% endblock %}
+
+{% block main %}
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% include 'base/sidebar.html' %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            {% include 'base/topbar.html' %}
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                {% include 'base/nav_menu.html' %}
+                {% block content %}
+                <h3>การสิจัยหรือตำราหนังสือหรือผลงานทางวิชาการหรือบทความทางวิชาการ</h3>
+                <p>2.1 มีผลงานวิจัยหรืองานสร้างสรรค์</p>
+                <p>2.2 ระดับคุณภาพของผลงานวิชาการ</p>
+                <p>2.3 มีการบูรณาการกระบวนการวิจัยหรืองานสร้างสรรค์กับการจัดการเรียนการสอน</p>
+                <p>2.4 มีผลงานการเผยแพร่งานวิจัยหรืองานสร้างสรรค์ในการประชุมวิชาการหรือการตีพิมพ์ในวารสารระดับชาติ / นานาชาติ</p>
+                <p>2.5 จำนวนครั้งในการเผยแพร่งานวิจัยหรืองานสร้างสรรค์ในการประชุมวิชาการหรือการตีพิมพ์ในวารสารระดับชาติ / นานาชาติ</p>
+                <p>2.6 มีการนำผลงานวิจัยหรืองานสร้างสรรค์ไปใช้ให้เกิดประโยชน์ และมีการรับรองการใช้ประโยชน์จริงจากหน่วยงานภายนอกหรือชุมชน</p>
+                <p>2.7 มีการจดสิทธิบัตร / อนุสิทธิบัตร</p>
+                <p>2.8 ภาระงานวิชาการอื่น ๆ </p>
+                {% endblock %}
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        {% include 'base/footer.html' %}
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+{% include 'base/logoutmodal.html' %}
+<!-- End Logout Modal-->
+{% endblock %}

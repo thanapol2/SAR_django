@@ -4,5 +4,59 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-hello world
+<h2>หัวข้อการประเมิน</h2>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>หมวดที่</th>
+            <th>ชื่อหัวข้อ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>
+                <a href="{% url 'subcate1' %}">
+                    การเรียนการสอน
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>
+                <a href="{% url 'subcate2' %}">
+                    การสิจัยหรือตำราหนังสือหรือผลงานทางวิชาการหรือบทความทางวิชาการ
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>
+                <a href="{% url 'subcate3' %}">
+                    การบริการวิชาการ
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>
+                <a href="{% url 'subcate4' %}">
+                    การทำนุบำรุงศิลปวัฒนธรรม
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>
+                <a href="{% url 'subcate5' %}">
+                    งานบริหาร/งานอื่นๆ ตามยุทธศาสตร์ นโยบายของมหาวิทยาลัย
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
 {% endblock %}
+

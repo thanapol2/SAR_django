@@ -16,3 +16,17 @@ class SignUp(generic.CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
+def sub_category1(request):
+    return render(request, 'eva/sub_category1.html')
+
+def sub_category2(request):
+    return render(request, 'eva/sub_category2.html')
+
+def sub_category3(request):
+    return render(request, 'eva/sub_category3.html')
+
+def sub_category4(request):
+    return render(request, 'eva/sub_category4.html')
+
+def sub_category5(request):
+    return render(request, 'eva/sub_category5.html')
