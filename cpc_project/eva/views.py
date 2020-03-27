@@ -1,8 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
+from .models import Sub_Cate11
+from .forms import SubCateForm11
+
 from django.http import Http404
 
 def index(request):
@@ -30,3 +33,14 @@ def sub_category4(request):
 
 def sub_category5(request):
     return render(request, 'eva/sub_category5.html')
+
+def add_form_no11(request):
+    no11 = request.POST["no11"]
+    txtUsername11 = request.POST["txtUsername11"]
+    txtWeight11 = request.POST["txtWeight11"]
+    txtTarget11 = request.POST["txtTarget11"]
+
+    form_no11_info = Sub_Cate11(no11=no11,txtUsername11=txtUsername11,txtWeight11=txtWeight11,txtTarget11=txtTarget11)
+    form_no11_info.save()
+    return render(request, "eva/sub_category1.html")
+

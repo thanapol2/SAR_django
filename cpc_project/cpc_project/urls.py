@@ -25,5 +25,7 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     # path('', TemplateView.as_view(template_name='home2.html'), name='home'),
     path('eva/login/', auth_views.LoginView.as_view(), name='login'),
+
+
 ]
 handler404 = 'eva.views.page404'
