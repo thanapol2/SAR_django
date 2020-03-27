@@ -20,7 +20,12 @@ class SignUp(generic.CreateView):
     template_name = 'registration/signup.html'
 
 def sub_category1(request):
-    return render(request, 'eva/sub_category1.html')
+    print(request.method)
+    if request.method == 'POST':
+        data = request.POST["no11"]
+        print(data)
+    else:
+        return render(request, 'eva/sub_category1.html')
 
 def sub_category2(request):
     return render(request, 'eva/sub_category2.html')
@@ -34,13 +39,13 @@ def sub_category4(request):
 def sub_category5(request):
     return render(request, 'eva/sub_category5.html')
 
-def add_form_no11(request):
-    no11 = request.POST["no11"]
-    txtUsername11 = request.POST["txtUsername11"]
-    txtWeight11 = request.POST["txtWeight11"]
-    txtTarget11 = request.POST["txtTarget11"]
-
-    form_no11_info = Sub_Cate11(no11=no11,txtUsername11=txtUsername11,txtWeight11=txtWeight11,txtTarget11=txtTarget11)
-    form_no11_info.save()
-    return render(request, "eva/sub_category1.html")
+# def add_form_no11(request):
+#     no11 = request.POST["no11"]
+#     txtUsername11 = request.POST["txtUsername11"]
+#     txtWeight11 = request.POST["txtWeight11"]
+#     txtTarget11 = request.POST["txtTarget11"]
+#
+#     form_no11_info = Sub_Cate11(no11=no11,txtUsername11=txtUsername11,txtWeight11=txtWeight11,txtTarget11=txtTarget11)
+#     form_no11_info.save()
+#     return render(request, "eva/sub_category1.html")
 
