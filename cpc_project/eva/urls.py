@@ -8,7 +8,9 @@ urlpatterns = [
     path('signup/', views.SignUp.as_view(), name='signup'),
 
     path('sub_category1/', views.sub_category1, name='subcate1'),
-    # path('add_subcate11/', views.add_form_no11, name='add_form_no11'),
+
+    path('update_sub_category1/', views.update_sub_category1, name='update_sub_category1'),
+    # path('update_sub_category2/', views.update_sub_category2, name='update_sub_category2'),
 
     path('sub_category2/', views.sub_category2, name='subcate2'),
     path('sub_category3/', views.sub_category3, name='subcate3'),
