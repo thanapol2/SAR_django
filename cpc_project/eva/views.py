@@ -5,8 +5,17 @@ from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from .models import Sub_Cate1, Main_Cate
 from .forms import SubCateForm11
-
+from .forms import SubCateForm22
 from django.http import Http404
+from django.contrib.sessions.models import Session
+from django.contrib.auth.models import User
+
+# method check login
+def redircet_login(request):
+    if request.user.is_authenticated:
+        return 'aa'
+    else:
+        return redirect('login')
 
 def index(request):
     session_key = request.user.username
@@ -22,6 +31,7 @@ class SignUp(generic.CreateView):
     template_name = 'registration/signup.html'
 
 def sub_category1(request):
+    redircet_login(request)  # add check login
     if request.method == 'POST':
         no11 = request.POST["no11"]
         txtUsername11 = request.POST["txtUsername11"]
@@ -32,6 +42,7 @@ def sub_category1(request):
         form_no11_info.save()
         return render(request, 'eva/sub_category1.html')
     else:
+        session_key = request.user.username
         return render(request, 'eva/sub_category1.html')
 
 def update_sub_category1(request):
@@ -54,7 +65,11 @@ def sub_category4(request):
     return render(request, 'eva/sub_category4.html')
 
 def sub_category5(request):
-    return render(request, 'eva/sub_category5.html')
+    if request.method == 'POST':
+        print('hello')
+    else:
+        form = SubCateForm22()
+        return render(request, 'eva/sub_category11.html', {'form': form})
 
 # def add_form_no11(request):
 #     no11 = request.POST["no11"]
