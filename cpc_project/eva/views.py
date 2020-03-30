@@ -63,8 +63,20 @@ def sub_category5(request):
         if request.method == 'POST':
             print('hello')
         else:
+<<<<<<< Updated upstream
             form = SubCateForm_Test()
             return render(request, 'eva/sub_category11.html', {'form': form})
+=======
+            form1 = SubCateForm_test(prefix="form1")
+            form1.setValueUsername(request.user.username)
+            form2 = SubCateForm_test(prefix="form2")
+            form2.setValueUsername(request.user.username)
+            context = {
+                'form1': form1,
+                'form2': form2,
+            }
+            return render(request, 'eva/sub_category11.html', context)
+>>>>>>> Stashed changes
     else:
         return redirect('login')
 
