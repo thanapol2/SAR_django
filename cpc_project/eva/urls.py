@@ -7,8 +7,8 @@ urlpatterns = [
     path('404/', views.page404, name='404page'),
     path('signup/', views.SignUp.as_view(), name='signup'),
 
-    path('sub_category1/', views.sub_category1, name='subcate1'),
-    path('update_sub_category1/', views.sub_category1, name='update_sub_category1'),
+    path('sub_category1/', views.sub_category1_Insert, name='subcate1'),
+    path('update_sub_category1/', views.sub_category1_Update, name='update_sub_category1'),
 
     path('sub_category2/', views.sub_category2, name='subcate2'),
     path('sub_category3/', views.sub_category3, name='subcate3'),

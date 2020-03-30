@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from .models import Sub_Cate, Main_Cate
-from .forms import SubCateForm_Test
+from .forms import SubCateForm_Test,SubCateFormInsert
 from django.http import Http404
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
@@ -29,25 +29,35 @@ class SignUp(generic.CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
-def sub_category1(request, id='0'):
-    redircet_login(request)  # add check login
-    if request.method == 'GET':
-        if id == '0':
-            form = SubCateForm_Test()
+def sub_category1_Insert(request):
+    if request.user.is_authenticated: #check login
+        if request.method == 'GET':
+            form = SubCateFormInsert()
+            form.setValueSubNo('11')
             form.setValueUsername(request.user.username)
+            return render(request, "eva/sub_category1.html", {'form': form})
         else:
+            form = SubCateFormInsert(request.POST)
+            if form.is_valid():
+                form.save()
+            return redirect('/eva/')
+    else:
+        return redirect('login')
+
+def sub_category1_Update(request):
+    if request.user.is_authenticated:  # check login
+        if request.method == 'GET':
+            id = '1'
             subcate1 = Sub_Cate.objects.get(pk=id)
             form = SubCateForm_Test(instance=subcate1)
-        return render(request, "eva/sub_category1.html", {'form': form})
-    else:
-        if id == '0':
-            form = SubCateForm_Test(request.POST)
+            return render(request, "eva/sub_category1.html", {'form': form})
         else:
-            subcate1 = Sub_Cate.objects.get(pk=id)
-            form = SubCateForm_Test(request.POST, instance=subcate1)
-        if form.is_valid():
-            form.save()
-        return redirect('/eva/')
+            form = SubCateFormInsert(request.POST)
+            if form.is_valid():
+                form.save()
+            return redirect('/eva/')
+    else:
+        return redirect('login')
 
 def sub_category2(request):
     return render(request, 'eva/sub_category2.html')
@@ -63,20 +73,15 @@ def sub_category5(request):
         if request.method == 'POST':
             print('hello')
         else:
-<<<<<<< Updated upstream
-            form = SubCateForm_Test()
-            return render(request, 'eva/sub_category11.html', {'form': form})
-=======
-            form1 = SubCateForm_test(prefix="form1")
+            form1 = SubCateFormInsert(prefix="form1")
             form1.setValueUsername(request.user.username)
-            form2 = SubCateForm_test(prefix="form2")
+            form2 = SubCateFormInsert(prefix="form2")
             form2.setValueUsername(request.user.username)
             context = {
                 'form1': form1,
                 'form2': form2,
             }
             return render(request, 'eva/sub_category11.html', context)
->>>>>>> Stashed changes
     else:
         return redirect('login')
 
