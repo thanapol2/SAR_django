@@ -10,7 +10,7 @@ class Main_Cate(models.Model):
     class Meta:
          db_table = "EVA_CURRENT_MAIN_TOPIC"
 
-class Sub_Cate1(models.Model):
+class Sub_Cate(models.Model):
     seq_id = models.CharField(max_length=20, primary_key=True)
     sub_no = models.CharField(max_length=20, null = True)
     username = models.CharField(max_length=20, null = True)

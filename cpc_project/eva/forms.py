@@ -1,7 +1,13 @@
 from django import forms
-from .models import Sub_Cate11
+from .models import Sub_Cate
 
-class SubCateForm11(forms.ModelForm):
+class SubCateForm(forms.ModelForm):
     class Meta:
-        model = Sub_Cate11
+        model = Sub_Cate
+        fields = ('sub_no','username','weight','target')
+
+
+class SubCateForm_test(forms.ModelForm):
+    class Meta:
+        model = Sub_Cate
         fields = ('sub_no','username','weight','target')

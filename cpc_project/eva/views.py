@@ -3,9 +3,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
-from .models import Sub_Cate1, Main_Cate
-from .forms import SubCateForm11
-from .forms import SubCateForm22
+from .models import Sub_Cate, Main_Cate
+from .forms import SubCateForm_test
 from django.http import Http404
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
@@ -38,7 +37,7 @@ def sub_category1(request):
         txtWeight11 = request.POST["txtWeight11"]
         txtTarget11 = request.POST["txtTarget11"]
         print(no11,txtUsername11,txtWeight11,txtTarget11)
-        form_no11_info = Sub_Cate1(sub_no=no11, username=txtUsername11, weight=txtWeight11, target=txtTarget11)
+        form_no11_info = Sub_Cate(sub_no=no11, username=txtUsername11, weight=txtWeight11, target=txtTarget11)
         form_no11_info.save()
         return render(request, 'eva/sub_category1.html')
     else:
@@ -46,7 +45,7 @@ def sub_category1(request):
         return render(request, 'eva/sub_category1.html')
 
 def update_sub_category1(request):
-    edit_sub_cate11 = Sub_Cate1.objects.filter(sub_no__istartswith='1')
+    edit_sub_cate11 = Sub_Cate.objects.filter(sub_no__istartswith='1')
     print(edit_sub_cate11)
     return render(request, 'eva/sub_category1.html', {'edit_sub_cate11':edit_sub_cate11})
 
@@ -68,7 +67,7 @@ def sub_category5(request):
     if request.method == 'POST':
         print('hello')
     else:
-        form = SubCateForm22()
+        form = SubCateForm_test()
         return render(request, 'eva/sub_category11.html', {'form': form})
 
 # def add_form_no11(request):
