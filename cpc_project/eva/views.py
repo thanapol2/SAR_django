@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from .models import Sub_Cate, Main_Cate
-from .forms import SubCateForm_test
+from .forms import SubCateForm_Test
 from django.http import Http404
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
@@ -29,30 +29,25 @@ class SignUp(generic.CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
-def sub_category1(request):
+def sub_category1(request, id='0'):
     redircet_login(request)  # add check login
-    if request.method == 'POST':
-        no11 = request.POST["no11"]
-        txtUsername11 = request.POST["txtUsername11"]
-        txtWeight11 = request.POST["txtWeight11"]
-        txtTarget11 = request.POST["txtTarget11"]
-        print(no11,txtUsername11,txtWeight11,txtTarget11)
-        form_no11_info = Sub_Cate(sub_no=no11, username=txtUsername11, weight=txtWeight11, target=txtTarget11)
-        form_no11_info.save()
-        return render(request, 'eva/sub_category1.html')
+    if request.method == 'GET':
+        if id == '0':
+            form = SubCateForm_Test()
+            form.setValueUsername(request.user.username)
+        else:
+            subcate1 = Sub_Cate.objects.get(pk=id)
+            form = SubCateForm_Test(instance=subcate1)
+        return render(request, "eva/sub_category1.html", {'form': form})
     else:
-        session_key = request.user.username
-        return render(request, 'eva/sub_category1.html')
-
-def update_sub_category1(request):
-    edit_sub_cate11 = Sub_Cate.objects.filter(sub_no__istartswith='1')
-    print(edit_sub_cate11)
-    return render(request, 'eva/sub_category1.html', {'edit_sub_cate11':edit_sub_cate11})
-
-# def update_sub_category2(request):
-#     edit_sub_cate22 = Sub_Cate11.objects.filter(sub_no__contains='22')
-#     print(edit_sub_cate22)
-#     return render(request, 'eva/sub_category2.html', {'edit_sub_cate22':edit_sub_cate22})
+        if id == '0':
+            form = SubCateForm_Test(request.POST)
+        else:
+            subcate1 = Sub_Cate.objects.get(pk=id)
+            form = SubCateForm_Test(request.POST, instance=subcate1)
+        if form.is_valid():
+            form.save()
+        return redirect('/eva/')
 
 def sub_category2(request):
     return render(request, 'eva/sub_category2.html')
@@ -68,17 +63,9 @@ def sub_category5(request):
         if request.method == 'POST':
             print('hello')
         else:
-            form = SubCateForm_test()
+            form = SubCateForm_Test()
             return render(request, 'eva/sub_category11.html', {'form': form})
     else:
         return redirect('login')
-# def add_form_no11(request):
-#     no11 = request.POST["no11"]
-#     txtUsername11 = request.POST["txtUsername11"]
-#     txtWeight11 = request.POST["txtWeight11"]
-#     txtTarget11 = request.POST["txtTarget11"]
-#
-#     form_no11_info = Sub_Cate11(no11=no11,txtUsername11=txtUsername11,txtWeight11=txtWeight11,txtTarget11=txtTarget11)
-#     form_no11_info.save()
-#     return render(request, "eva/sub_category1.html")
+
 
