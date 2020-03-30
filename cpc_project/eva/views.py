@@ -64,12 +64,14 @@ def sub_category4(request):
     return render(request, 'eva/sub_category4.html')
 
 def sub_category5(request):
-    if request.method == 'POST':
-        print('hello')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            print('hello')
+        else:
+            form = SubCateForm_test()
+            return render(request, 'eva/sub_category11.html', {'form': form})
     else:
-        form = SubCateForm_test()
-        return render(request, 'eva/sub_category11.html', {'form': form})
-
+        return redirect('login')
 # def add_form_no11(request):
 #     no11 = request.POST["no11"]
 #     txtUsername11 = request.POST["txtUsername11"]
