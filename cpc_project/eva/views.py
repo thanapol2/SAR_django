@@ -260,82 +260,25 @@ def sub_category4(request):
 
 def sub_category5(request):
     if request.user.is_authenticated:  # check login
+        list_topics = range(1,9)
         if request.method == 'GET':
-            form1 = SubCateFormInsert(prefix="form1")
-            form1.setValueSubNo('51')
-            form1.setValueUsername(request.user.username)
-            form2 = SubCateFormInsert(prefix="form2")
-            form2.setValueSubNo('52')
-            form2.setValueUsername(request.user.username)
-            form3 = SubCateFormInsert(prefix="form3")
-            form3.setValueSubNo('53')
-            form3.setValueUsername(request.user.username)
-            form4 = SubCateFormInsert(prefix="form4")
-            form4.setValueSubNo('54')
-            form4.setValueUsername(request.user.username)
-            form5 = SubCateFormInsert(prefix="form5")
-            form5.setValueSubNo('55')
-            form5.setValueUsername(request.user.username)
-            form6 = SubCateFormInsert(prefix="form6")
-            form6.setValueSubNo('56')
-            form6.setValueUsername(request.user.username)
-            form7 = SubCateFormInsert(prefix="form7")
-            form7.setValueSubNo('57')
-            form7.setValueUsername(request.user.username)
-            form8 = SubCateFormInsert(prefix="form8")
-            form8.setValueSubNo('58')
-            form8.setValueUsername(request.user.username)
-
-            context = {
-                'form1': form1, 'form2': form2, 'form3': form3, 'form4': form4, 'form5': form5,
-                'form6': form6, 'form7': form7, 'form8': form8,
-            }
+            context = {}
+            for topic in list_topics:
+                prefix = 'form'+str(topic)
+                SubNo = str('5')+str(topic)
+                form = SubCateFormInsert(prefix=prefix)
+                form.setValueSubNo(SubNo)
+                form.setValueUsername(request.user.username)
+                context[prefix] = form
             return render(request, "eva/sub_category5.html", context)
         else:
-            form1 = SubCateFormInsert(request.POST)
-            form2 = SubCateFormInsert(request.POST)
-            form3 = SubCateFormInsert(request.POST)
-            form4 = SubCateFormInsert(request.POST)
-            form5 = SubCateFormInsert(request.POST)
-            form6 = SubCateFormInsert(request.POST)
-            form7 = SubCateFormInsert(request.POST)
-            form8 = SubCateFormInsert(request.POST)
-
-            if form1.is_valid():
-                form1.save()
-            elif form2.is_valid():
-                form2.save()
-            elif form3.is_valid():
-                form3.save()
-            elif form4.is_valid():
-                form4.save()
-            elif form5.is_valid():
-                form5.save()
-            elif form6.is_valid():
-                form6.save()
-            elif form7.is_valid():
-                form7.save()
-            elif form8.is_valid():
-                form8.save()
+            for topic in list_topics:
+                prefix = 'form'+str(topic)
+                form = SubCateFormInsert(request.POST, prefix=prefix)
+                if form.is_valid():
+                    form.save()
             return redirect('/eva/')
     else:
         return redirect('login')
-
-# def sub_category5(request):
-#     if request.user.is_authenticated:
-#         if request.method == 'POST':
-#             print('hello')
-#         else:
-#             form1 = SubCateFormInsert(prefix="form1")
-#             form1.setValueUsername(request.user.username)
-#             form2 = SubCateFormInsert(prefix="form2")
-#             form2.setValueUsername(request.user.username)
-#             context = {
-#                 'form1': form1,
-#                 'form2': form2,
-#             }
-#             return render(request, 'eva/sub_category11.html', context)
-#     else:
-#         return redirect('login')
 
 
