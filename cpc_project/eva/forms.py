@@ -21,13 +21,13 @@ class SubCateFormInsert(forms.ModelForm):
             'class': 'textinput textInput form-control',
             'value': Username})
 
-class SubCateForm_Test(forms.ModelForm):
+class SubCateFormUpdate(forms.ModelForm):
     class Meta:
         model = Sub_Cate
         fields = ('sub_no','username','weight','target')
 
     def __init__(self, *args, **kwargs):
-        super(SubCateForm_Test, self).__init__(*args, **kwargs)
+        super(SubCateFormUpdate, self).__init__(*args, **kwargs)
         self.fields['sub_no'].widget = HiddenInput(attrs={
             'class': 'textinput textInput from-control',
             'value': '11'})

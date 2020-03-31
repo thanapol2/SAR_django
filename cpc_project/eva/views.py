@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from .models import Sub_Cate, Main_Cate
-from .forms import SubCateForm_Test,SubCateFormInsert
+from .forms import SubCateFormUpdate,SubCateFormInsert
 from django.http import Http404
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
@@ -32,14 +32,73 @@ class SignUp(generic.CreateView):
 def sub_category1_Insert(request):
     if request.user.is_authenticated: #check login
         if request.method == 'GET':
-            form = SubCateFormInsert()
-            form.setValueSubNo('11')
-            form.setValueUsername(request.user.username)
-            return render(request, "eva/sub_category1.html", {'form': form})
+            form1 = SubCateFormInsert(prefix="form1")
+            form1.setValueSubNo('11')
+            form1.setValueUsername(request.user.username)
+            form2 = SubCateFormInsert(prefix="form2")
+            form2.setValueSubNo('12')
+            form2.setValueUsername(request.user.username)
+            form3 = SubCateFormInsert(prefix="form3")
+            form3.setValueSubNo('13')
+            form3.setValueUsername(request.user.username)
+            form4 = SubCateFormInsert(prefix="form4")
+            form4.setValueSubNo('14')
+            form4.setValueUsername(request.user.username)
+            form5 = SubCateFormInsert(prefix="form5")
+            form5.setValueSubNo('15')
+            form5.setValueUsername(request.user.username)
+            form6 = SubCateFormInsert(prefix="form6")
+            form6.setValueSubNo('16')
+            form6.setValueUsername(request.user.username)
+            form7 = SubCateFormInsert(prefix="form7")
+            form7.setValueSubNo('17')
+            form7.setValueUsername(request.user.username)
+            form8 = SubCateFormInsert(prefix="form8")
+            form8.setValueSubNo('18')
+            form8.setValueUsername(request.user.username)
+            form9 = SubCateFormInsert(prefix="form9")
+            form9.setValueSubNo('19')
+            form9.setValueUsername(request.user.username)
+            form10 = SubCateFormInsert(prefix="form10")
+            form10.setValueSubNo('110')
+            form10.setValueUsername(request.user.username)
+            context = {
+                'form1': form1, 'form2': form2, 'form3': form3, 'form4': form4, 'form5': form5,
+                'form6': form6, 'form7': form7, 'form8': form8, 'form9': form9, 'form10': form10,
+            }
+            return render(request, "eva/sub_category1.html", context)
         else:
-            form = SubCateFormInsert(request.POST)
-            if form.is_valid():
-                form.save()
+            form1 = SubCateFormInsert(request.POST)
+            form2 = SubCateFormInsert(request.POST)
+            form3 = SubCateFormInsert(request.POST)
+            form4 = SubCateFormInsert(request.POST)
+            form5 = SubCateFormInsert(request.POST)
+            form6 = SubCateFormInsert(request.POST)
+            form7 = SubCateFormInsert(request.POST)
+            form8 = SubCateFormInsert(request.POST)
+            form9 = SubCateFormInsert(request.POST)
+            form10 = SubCateFormInsert(request.POST)
+
+            if form1.is_valid():
+                form1.save()
+            elif form2.is_valid():
+                form2.save()
+            elif form3.is_valid():
+                form3.save()
+            elif form4.is_valid():
+                form4.save()
+            elif form5.is_valid():
+                form5.save()
+            elif form6.is_valid():
+                form6.save()
+            elif form7.is_valid():
+                form7.save()
+            elif form8.is_valid():
+                form8.save()
+            elif form9.is_valid():
+                form9.save()
+            elif form10.is_valid():
+                form10.save()
             return redirect('/eva/')
     else:
         return redirect('login')
@@ -47,12 +106,14 @@ def sub_category1_Insert(request):
 def sub_category1_Update(request):
     if request.user.is_authenticated:  # check login
         if request.method == 'GET':
-            id = '1'
+            id = '4'
             subcate1 = Sub_Cate.objects.get(pk=id)
-            form = SubCateForm_Test(instance=subcate1)
+            form = SubCateFormUpdate(instance=subcate1)
             return render(request, "eva/sub_category1.html", {'form': form})
         else:
-            form = SubCateFormInsert(request.POST)
+            id = '4'
+            subcate1 = Sub_Cate.objects.get(pk=id)
+            form = SubCateFormInsert(request.POST, instance=subcate1)
             if form.is_valid():
                 form.save()
             return redirect('/eva/')
@@ -60,29 +121,221 @@ def sub_category1_Update(request):
         return redirect('login')
 
 def sub_category2(request):
-    return render(request, 'eva/sub_category2.html')
-
-def sub_category3(request):
-    return render(request, 'eva/sub_category3.html')
-
-def sub_category4(request):
-    return render(request, 'eva/sub_category4.html')
-
-def sub_category5(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            print('hello')
-        else:
+    if request.user.is_authenticated:  # check login
+        if request.method == 'GET':
             form1 = SubCateFormInsert(prefix="form1")
+            form1.setValueSubNo('21')
             form1.setValueUsername(request.user.username)
             form2 = SubCateFormInsert(prefix="form2")
+            form2.setValueSubNo('22')
             form2.setValueUsername(request.user.username)
+            form3 = SubCateFormInsert(prefix="form3")
+            form3.setValueSubNo('23')
+            form3.setValueUsername(request.user.username)
+            form4 = SubCateFormInsert(prefix="form4")
+            form4.setValueSubNo('24')
+            form4.setValueUsername(request.user.username)
+            form5 = SubCateFormInsert(prefix="form5")
+            form5.setValueSubNo('25')
+            form5.setValueUsername(request.user.username)
+            form6 = SubCateFormInsert(prefix="form6")
+            form6.setValueSubNo('26')
+            form6.setValueUsername(request.user.username)
+            form7 = SubCateFormInsert(prefix="form7")
+            form7.setValueSubNo('27')
+            form7.setValueUsername(request.user.username)
+            form8 = SubCateFormInsert(prefix="form8")
+            form8.setValueSubNo('28')
+            form8.setValueUsername(request.user.username)
+
             context = {
-                'form1': form1,
-                'form2': form2,
+                'form1': form1, 'form2': form2, 'form3': form3, 'form4': form4, 'form5': form5,
+                'form6': form6, 'form7': form7, 'form8': form8,
             }
-            return render(request, 'eva/sub_category11.html', context)
+            return render(request, "eva/sub_category2.html", context)
+        else:
+            form1 = SubCateFormInsert(request.POST)
+            form2 = SubCateFormInsert(request.POST)
+            form3 = SubCateFormInsert(request.POST)
+            form4 = SubCateFormInsert(request.POST)
+            form5 = SubCateFormInsert(request.POST)
+            form6 = SubCateFormInsert(request.POST)
+            form7 = SubCateFormInsert(request.POST)
+            form8 = SubCateFormInsert(request.POST)
+
+            if form1.is_valid():
+                form1.save()
+            elif form2.is_valid():
+                form2.save()
+            elif form3.is_valid():
+                form3.save()
+            elif form4.is_valid():
+                form4.save()
+            elif form5.is_valid():
+                form5.save()
+            elif form6.is_valid():
+                form6.save()
+            elif form7.is_valid():
+                form7.save()
+            elif form8.is_valid():
+                form8.save()
+            return redirect('/eva/')
     else:
         return redirect('login')
+
+def sub_category3(request):
+    if request.user.is_authenticated:  # check login
+        if request.method == 'GET':
+            form1 = SubCateFormInsert(prefix="form1")
+            form1.setValueSubNo('31')
+            form1.setValueUsername(request.user.username)
+            form2 = SubCateFormInsert(prefix="form2")
+            form2.setValueSubNo('32')
+            form2.setValueUsername(request.user.username)
+            form3 = SubCateFormInsert(prefix="form3")
+            form3.setValueSubNo('33')
+            form3.setValueUsername(request.user.username)
+            form4 = SubCateFormInsert(prefix="form4")
+            form4.setValueSubNo('34')
+            form4.setValueUsername(request.user.username)
+            form5 = SubCateFormInsert(prefix="form5")
+            form5.setValueSubNo('35')
+            form5.setValueUsername(request.user.username)
+
+            context = {
+                'form1': form1, 'form2': form2, 'form3': form3, 'form4': form4, 'form5': form5,
+            }
+            return render(request, "eva/sub_category3.html", context)
+        else:
+            form1 = SubCateFormInsert(request.POST)
+            form2 = SubCateFormInsert(request.POST)
+            form3 = SubCateFormInsert(request.POST)
+            form4 = SubCateFormInsert(request.POST)
+            form5 = SubCateFormInsert(request.POST)
+
+            if form1.is_valid():
+                form1.save()
+            elif form2.is_valid():
+                form2.save()
+            elif form3.is_valid():
+                form3.save()
+            elif form4.is_valid():
+                form4.save()
+            elif form5.is_valid():
+                form5.save()
+            return redirect('/eva/')
+    else:
+        return redirect('login')
+
+def sub_category4(request):
+    if request.user.is_authenticated:  # check login
+        if request.method == 'GET':
+            form1 = SubCateFormInsert(prefix="form1")
+            form1.setValueSubNo('41')
+            form1.setValueUsername(request.user.username)
+            form2 = SubCateFormInsert(prefix="form2")
+            form2.setValueSubNo('42')
+            form2.setValueUsername(request.user.username)
+            form3 = SubCateFormInsert(prefix="form3")
+            form3.setValueSubNo('43')
+            form3.setValueUsername(request.user.username)
+            context = {
+                'form1': form1, 'form2': form2, 'form3': form3,
+            }
+            return render(request, "eva/sub_category4.html", context)
+        else:
+            form1 = SubCateFormInsert(request.POST)
+            form2 = SubCateFormInsert(request.POST)
+            form3 = SubCateFormInsert(request.POST)
+
+            if form1.is_valid():
+                form1.save()
+            elif form2.is_valid():
+                form2.save()
+            elif form3.is_valid():
+                form3.save()
+            return redirect('/eva/')
+    else:
+        return redirect('login')
+
+def sub_category5(request):
+    if request.user.is_authenticated:  # check login
+        if request.method == 'GET':
+            form1 = SubCateFormInsert(prefix="form1")
+            form1.setValueSubNo('51')
+            form1.setValueUsername(request.user.username)
+            form2 = SubCateFormInsert(prefix="form2")
+            form2.setValueSubNo('52')
+            form2.setValueUsername(request.user.username)
+            form3 = SubCateFormInsert(prefix="form3")
+            form3.setValueSubNo('53')
+            form3.setValueUsername(request.user.username)
+            form4 = SubCateFormInsert(prefix="form4")
+            form4.setValueSubNo('54')
+            form4.setValueUsername(request.user.username)
+            form5 = SubCateFormInsert(prefix="form5")
+            form5.setValueSubNo('55')
+            form5.setValueUsername(request.user.username)
+            form6 = SubCateFormInsert(prefix="form6")
+            form6.setValueSubNo('56')
+            form6.setValueUsername(request.user.username)
+            form7 = SubCateFormInsert(prefix="form7")
+            form7.setValueSubNo('57')
+            form7.setValueUsername(request.user.username)
+            form8 = SubCateFormInsert(prefix="form8")
+            form8.setValueSubNo('58')
+            form8.setValueUsername(request.user.username)
+
+            context = {
+                'form1': form1, 'form2': form2, 'form3': form3, 'form4': form4, 'form5': form5,
+                'form6': form6, 'form7': form7, 'form8': form8,
+            }
+            return render(request, "eva/sub_category5.html", context)
+        else:
+            form1 = SubCateFormInsert(request.POST)
+            form2 = SubCateFormInsert(request.POST)
+            form3 = SubCateFormInsert(request.POST)
+            form4 = SubCateFormInsert(request.POST)
+            form5 = SubCateFormInsert(request.POST)
+            form6 = SubCateFormInsert(request.POST)
+            form7 = SubCateFormInsert(request.POST)
+            form8 = SubCateFormInsert(request.POST)
+
+            if form1.is_valid():
+                form1.save()
+            elif form2.is_valid():
+                form2.save()
+            elif form3.is_valid():
+                form3.save()
+            elif form4.is_valid():
+                form4.save()
+            elif form5.is_valid():
+                form5.save()
+            elif form6.is_valid():
+                form6.save()
+            elif form7.is_valid():
+                form7.save()
+            elif form8.is_valid():
+                form8.save()
+            return redirect('/eva/')
+    else:
+        return redirect('login')
+
+# def sub_category5(request):
+#     if request.user.is_authenticated:
+#         if request.method == 'POST':
+#             print('hello')
+#         else:
+#             form1 = SubCateFormInsert(prefix="form1")
+#             form1.setValueUsername(request.user.username)
+#             form2 = SubCateFormInsert(prefix="form2")
+#             form2.setValueUsername(request.user.username)
+#             context = {
+#                 'form1': form1,
+#                 'form2': form2,
+#             }
+#             return render(request, 'eva/sub_category11.html', context)
+#     else:
+#         return redirect('login')
 
 

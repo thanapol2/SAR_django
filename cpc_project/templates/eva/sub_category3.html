@@ -26,14 +26,43 @@
                 <!-- Page Heading -->
                 {% include 'base/nav_menu.html' %}
                 {% block content %}
-                <h3>การบริการวิชาการ</h3>
-                <p>3.1 มีผลงานการบริการทางวิชาการแก่สังคม</p>
-                <p>3.2 มีผลงานการเป็นผู้รับผิดชอบโครงการบริการวิชาการแก่สังคม</p>
-                <p>3.3 เป็นคณะกรรมการโครงการบริการวิชาการแก่สังคม</p>
-                <p>3.4 มีการบูรณาการงานบริการทางวิชาการแก่สังคม</p>
-                <p>3.5 งานบริการวิชาการอื่น ๆ</p>
-                {% endblock %}
-
+                {% load crispy_forms_tags %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <h3>การบริการวิชาการ</h3>
+                    <div class="form-group">
+                        <p>3.1 มีผลงานการบริการทางวิชาการแก่สังคม</p>
+                        <div class="form-inline">
+                                {{form1|crispy}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p>3.2 มีผลงานการเป็นผู้รับผิดชอบโครงการบริการวิชาการแก่สังคม</p>
+                        <div class="form-inline">
+                                {{form2|crispy}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p>3.3 เป็นคณะกรรมการโครงการบริการวิชาการแก่สังคม</p>
+                        <div class="form-inline">
+                                {{form3|crispy}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p>3.4 มีการบูรณาการงานบริการทางวิชาการแก่สังคม</p>
+                        <div class="form-inline">
+                                {{form4|crispy}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p>3.5 งานบริการวิชาการอื่น ๆ</p>
+                        <div class="form-inline">
+                                {{form5|crispy}}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-left:1rem;">Submit</button>
+                </form>
+                    {% endblock %}
             </div>
             <!-- /.container-fluid -->
 
