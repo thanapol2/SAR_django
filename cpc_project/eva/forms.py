@@ -45,6 +45,14 @@ class SubCateFormUpdate(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(SubCateFormUpdate, self).__init__(*args, **kwargs)
+        # self.fields['sub_no'].widget = HiddenInput(attrs={
+        #     'class': 'from-control'})
+        # self.fields['username'].widget = HiddenInput(attrs={
+        #     'class': 'form-control'})
+        self.fields['sub_no'].widget = TextInput(attrs={
+            'class': 'from-control'})
+        self.fields['username'].widget = TextInput(attrs={
+            'class': 'form-control'})
 
     def setValueSubNo(self, SubNo):
         self.fields['sub_no'].widget = HiddenInput(attrs={

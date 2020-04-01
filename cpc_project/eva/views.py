@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
-from .models import Sub_Cate, Main_Cate
+from .models import Sub_Cate, Main_Cate, Sub_Cate_Master
 from .forms import SubCateFormUpdate,SubCateFormInsert
 from django.http import Http404
 from django.contrib.sessions.models import Session
@@ -55,21 +55,17 @@ def sub_category1_Insert(request):
 
 def sub_category1_Update(request):
     if request.user.is_authenticated:  # check login
-        list_topics = range(1, 11)
         if request.method == 'GET':
+            models = Sub_Cate.objects.filter(sub_no__main_id='1').order_by('sub_no__seq')
+            list_topics = range(len(models)) # index list
             context = {}
             for topic in list_topics:
-                prefix = 'form' + str(topic)
-                SubNo = str('1') + str(topic)
-                id = '4'
-                subcate1 = Sub_Cate.objects.get(pk=id)
-                form = SubCateFormUpdate(prefix=prefix, instance=subcate1)
-                form.setValueSubNo(SubNo)
-                form.setValueUsername(request.user.username)
+                prefix = 'form' + str(topic+1)  ## plus one for number of topic
+                subcate = models[topic]
+                a = subcate.sub_no_id
+                form = SubCateFormUpdate(prefix=prefix, instance=subcate)
+                # form.setValueSubNo()
                 context[prefix] = form
-                # id = '4'
-                # subcate1 = Sub_Cate.objects.get(pk=id)
-                # form = SubCateFormUpdate(instance=subcate1)
             return render(request, "eva/sub_category1.html", context)
         else:
             id = '4'
