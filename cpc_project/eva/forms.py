@@ -4,7 +4,7 @@ from django.forms import TextInput, HiddenInput, Select, NumberInput
 from .models import Sub_Cate
 
 TARGET_CHOICES=[
-    ('','-- Select Target --'),
+    ('0','-- Select Target --'),
     ('1','1'),
     ('2','2'),
     ('3','3'),
@@ -32,6 +32,7 @@ class SubCateFormInsert(forms.ModelForm):
         self.fields['weight'].widget = NumberInput(attrs={
             'autocomplete':'off',
             'min': 0,
+            'value': 0,
             'class': 'form-control'})
         self.fields['target'].widget = Select(choices=TARGET_CHOICES, attrs={
             'class': 'form-control'})
@@ -45,27 +46,14 @@ class SubCateFormUpdate(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(SubCateFormUpdate, self).__init__(*args, **kwargs)
-        # self.fields['sub_no'].widget = HiddenInput(attrs={
-        #     'class': 'from-control'})
-        # self.fields['username'].widget = HiddenInput(attrs={
-        #     'class': 'form-control'})
-        self.fields['sub_no'].widget = TextInput(attrs={
-            'class': 'from-control'})
-        self.fields['username'].widget = TextInput(attrs={
-            'class': 'form-control'})
-
-    def setValueSubNo(self, SubNo):
         self.fields['sub_no'].widget = HiddenInput(attrs={
-            'class': 'from-control',
-            'value': SubNo})
-
-    def setValueUsername(self,Username):
+            'class': 'from-control'})
         self.fields['username'].widget = HiddenInput(attrs={
-            'class': 'form-control',
-            'value': Username})
-        self.fields['weight'].widget = NumberInput(attrs={
-            'autocomplete': 'off',
-            'min': 0,
             'class': 'form-control'})
         self.fields['target'].widget = Select(choices=TARGET_CHOICES,attrs={
             'class': 'form-control'})
+
+    # def setValueSubNo(self, SubNo):
+    #     self.fields['sub_no'].widget = HiddenInput(attrs={
+    #         'class': 'from-control',
+    #         'value': SubNo})
