@@ -113,7 +113,7 @@ def sub_category2_Update(request):
                 subcate = models[topic]
                 form = SubCateFormUpdate(prefix=prefix, instance=subcate)
                 context[prefix] = form
-            return render(request, "eva/sub_category3.html", context)
+            return render(request, "eva/sub_category2.html", context)
         else:
             for topic in list_topics:
                 prefix = 'form' + str(topic + 1)  # plus one for number of topic
@@ -207,7 +207,7 @@ def sub_category4_Update(request):
                 subcate = models[topic]
                 form = SubCateFormUpdate(prefix=prefix, instance=subcate)
                 context[prefix] = form
-            return render(request, "eva/sub_category3.html", context)
+            return render(request, "eva/sub_category4.html", context)
         else:
             for topic in list_topics:
                 prefix = 'form' + str(topic + 1)  # plus one for number of topic
@@ -254,7 +254,7 @@ def sub_category5_Update(request):
                 subcate = models[topic]
                 form = SubCateFormUpdate(prefix=prefix, instance=subcate)
                 context[prefix] = form
-            return render(request, "eva/sub_category3.html", context)
+            return render(request, "eva/sub_category5.html", context)
         else:
             for topic in list_topics:
                 prefix = 'form' + str(topic + 1)  # plus one for number of topic
