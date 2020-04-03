@@ -15,6 +15,13 @@
         </tr>
     </thead>
     <tbody>
+        {% if messages %}
+            {% for msg in messages %}
+                <div class="alert {{msg.level_tag}}" role="alert">
+                    {{ msg.message }}
+                </div>
+            {% endfor %}
+        {% endif %}
 
         {% for row in list_main_cate %}
         <tr>

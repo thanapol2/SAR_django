@@ -5,6 +5,7 @@ from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from .models import Sub_Cate, Main_Cate, Sub_Cate_Master
 from .forms import SubCateFormUpdate,SubCateFormInsert
+from django.contrib import messages
 from django.http import Http404
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
@@ -51,6 +52,7 @@ def sub_category1_Insert(request):
                 form = SubCateFormInsert(request.POST, prefix=prefix)
                 if form.is_valid():
                     form.save()
+            messages.success(request, "บันทึกข้อมูลเรียบร้อยแล้ว")
             return redirect('/eva/')
     else:
         return redirect('login')
@@ -75,6 +77,7 @@ def sub_category1_Update(request):
                 context[prefix] = form
                 if context[prefix].is_valid():
                     context[prefix].save()
+            messages.success(request, "บันทึกข้อมูลเรียบร้อยแล้ว")
             return redirect('/eva/')
     else:
         return redirect('login')
@@ -98,6 +101,7 @@ def sub_category2_Insert(request):
                 form = SubCateFormInsert(request.POST, prefix=prefix)
                 if form.is_valid():
                     form.save()
+            messages.success(request, "บันทึกข้อมูลเรียบร้อยแล้ว")
             return redirect('/eva/')
     else:
         return redirect('login')
@@ -122,6 +126,7 @@ def sub_category2_Update(request):
                 context[prefix] = form
                 if context[prefix].is_valid():
                     context[prefix].save()
+            messages.success(request, "บันทึกข้อมูลเรียบร้อยแล้ว")
             return redirect('/eva/')
     else:
         return redirect('login')
@@ -145,6 +150,7 @@ def sub_category3_Insert(request):
                 form = SubCateFormInsert(request.POST, prefix=prefix)
                 if form.is_valid():
                     form.save()
+            messages.success(request, "บันทึกข้อมูลเรียบร้อยแล้ว")
             return redirect('/eva/')
     else:
         return redirect('login')
@@ -169,6 +175,7 @@ def sub_category3_Update(request):
                 context[prefix] = form
                 if context[prefix].is_valid():
                     context[prefix].save()
+            messages.success(request, "บันทึกข้อมูลเรียบร้อยแล้ว")
             return redirect('/eva/')
     else:
         return redirect('login')
@@ -192,6 +199,7 @@ def sub_category4_Insert(request):
                 form = SubCateFormInsert(request.POST, prefix=prefix)
                 if form.is_valid():
                     form.save()
+            messages.success(request, "บันทึกข้อมูลเรียบร้อยแล้ว")
             return redirect('/eva/')
     else:
         return redirect('login')
@@ -216,6 +224,7 @@ def sub_category4_Update(request):
                 context[prefix] = form
                 if context[prefix].is_valid():
                     context[prefix].save()
+            messages.success(request, "บันทึกข้อมูลเรียบร้อยแล้ว")
             return redirect('/eva/')
     else:
         return redirect('login')
@@ -239,6 +248,7 @@ def sub_category5_Insert(request):
                 form = SubCateFormInsert(request.POST, prefix=prefix)
                 if form.is_valid():
                     form.save()
+            messages.success(request, "บันทึกข้อมูลเรียบร้อยแล้ว")
             return redirect('/eva/')
     else:
         return redirect('login')
@@ -263,6 +273,7 @@ def sub_category5_Update(request):
                 context[prefix] = form
                 if context[prefix].is_valid():
                     context[prefix].save()
+            messages.success(request, "บันทึกข้อมูลเรียบร้อยแล้ว")
             return redirect('/eva/')
     else:
         return redirect('login')
