@@ -1,0 +1,30 @@
+{% extends 'blank.html' %}
+
+
+{% block title %}doc_list{% endblock %}
+
+{% block content %}
+<h2>เอกสาร</h2>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ชื่อเอกสาร</th>
+            <th>ผู้อัพโหลด</th>
+            <th>ดาวน์โหลดเอกสาร</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for doc in docs %}
+        <tr>
+            <td>{{ doc.file_name }}</td>
+            <td>{{ doc.upload_user }}</td>
+            <td>
+                <a href="..{{ doc.path_file.url }}" class="btn btn-primary btn-sm">ดาวน์โหลด</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

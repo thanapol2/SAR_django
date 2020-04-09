@@ -1,0 +1,16 @@
+{% extends 'blank.html' %}
+
+
+{% block title %}upload_doc{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<h2>อัพโหลดเอกสาร</h2>
+<br>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">อัพโหลด</button>
+</form>
+
+{% endblock %}

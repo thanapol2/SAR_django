@@ -1,108 +1,61 @@
-{% extends 'base.html' %}
-
+{% extends 'blank.html' %}
 
 {% block title %}หัวข้อย่อยที่5{% endblock %}
 
-{% block main %}
-<div id="wrapper">
-
-    <!-- Sidebar -->
-    {% include 'base/sidebar.html' %}
-    <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-        <!-- Main Content -->
-        <div id="content">
-
-            <!-- Topbar -->
-            {% include 'base/topbar.html' %}
-            <!-- End of Topbar -->
-
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                {% include 'base/nav_menu.html' %}
-                {% block content %}
-                {% load crispy_forms_tags %}
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <h3>งานบริหาร/งานอื่นๆ ตามยุทธศาสตร์ นโยบายของมหาวิทยาลัย</h3>
-                    <div class="form-group">
-                        <p>5.1 การให้ความร่วมมือเข้าร่วมกิจกรรมของคณะ/มหาวิทยาลัย เช่น การประชุมปฐมนิเทศ ปัจฉิมนิเทศ กฐินพระราชทาน งานกีฬา ไหว้ครู วันสำคัญทางศาสนา ฯลฯ</p>
-                        <div class="form-inline">
-                                {{form1|crispy}}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <p>5.2 เป็นคณะกรรมการประกันคุณภาพ</p>
-                        <div class="form-inline">
-                                {{form2|crispy}}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <p>5.3 เป็นคณะกรรมการจัดการความรู้</p>
-                        <div class="form-inline">
-                                {{form3|crispy}}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <p>5.4 เป็นคณะกรรมการบริหารความเสี่ยง</p>
-                        <div class="form-inline">
-                                {{form4|crispy}}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <p>5.5 เป็นคณะกรรมการอื่น ๆ ตามคำสั่งคณะ/มหาวิทยาลัย</p>
-                        <div class="form-inline">
-                                {{form5|crispy}}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <p>5.6 เป็นอาจารย์ที่ปรึกษาผลงานที่นักศึกษาได้รับรางวัลระดับชาติ/นานาชาติ</p>
-                        <div class="form-inline">
-                                {{form6|crispy}}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <p>5.7 มีผลงานการเป็นผู้รับผิดชอบ/เป็นคณะกรรมการดำเนินโครงการเกี่ยวกับการอนุรักษ์สิ่งแวดล้อม/จิตอาสา/บำเพ็ญประโยชน์</p>
-                        <div class="form-inline">
-                                {{form7|crispy}}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <p>5.8 อื่น ๆ..(ผู้ประเมินและผู้รับการประเมินตกลงกันเอง).............</p>
-                        <div class="form-inline">
-                                {{form8|crispy}}
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="margin-left:1rem;">Submit</button>
-                </form>
-                {% endblock %}
-            </div>
-            <!-- /.container-fluid -->
-
+{% block content %}
+{% load crispy_forms_tags %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h3>งานบริหาร/งานอื่นๆ ตามยุทธศาสตร์ นโยบายของมหาวิทยาลัย</h3>
+    <div class="form-group">
+        <p>5.1 การให้ความร่วมมือเข้าร่วมกิจกรรมของคณะ/มหาวิทยาลัย เช่น การประชุมปฐมนิเทศ ปัจฉิมนิเทศ กฐินพระราชทาน งานกีฬา ไหว้ครู วันสำคัญทางศาสนา ฯลฯ</p>
+        <div class="form-inline">
+                {{form1|crispy}}
         </div>
-        <!-- End of Main Content -->
-
-        <!-- Footer -->
-        {% include 'base/footer.html' %}
-        <!-- End of Footer -->
-
     </div>
-    <!-- End of Content Wrapper -->
+    <div class="form-group">
+        <p>5.2 เป็นคณะกรรมการประกันคุณภาพ</p>
+        <div class="form-inline">
+                {{form2|crispy}}
+        </div>
+    </div>
+    <div class="form-group">
+        <p>5.3 เป็นคณะกรรมการจัดการความรู้</p>
+        <div class="form-inline">
+                {{form3|crispy}}
+        </div>
+    </div>
+    <div class="form-group">
+        <p>5.4 เป็นคณะกรรมการบริหารความเสี่ยง</p>
+        <div class="form-inline">
+                {{form4|crispy}}
+        </div>
+    </div>
+    <div class="form-group">
+        <p>5.5 เป็นคณะกรรมการอื่น ๆ ตามคำสั่งคณะ/มหาวิทยาลัย</p>
+        <div class="form-inline">
+                {{form5|crispy}}
+        </div>
+    </div>
+    <div class="form-group">
+        <p>5.6 เป็นอาจารย์ที่ปรึกษาผลงานที่นักศึกษาได้รับรางวัลระดับชาติ/นานาชาติ</p>
+        <div class="form-inline">
+                {{form6|crispy}}
+        </div>
+    </div>
+    <div class="form-group">
+        <p>5.7 มีผลงานการเป็นผู้รับผิดชอบ/เป็นคณะกรรมการดำเนินโครงการเกี่ยวกับการอนุรักษ์สิ่งแวดล้อม/จิตอาสา/บำเพ็ญประโยชน์</p>
+        <div class="form-inline">
+                {{form7|crispy}}
+        </div>
+    </div>
+    <div class="form-group">
+        <p>5.8 อื่น ๆ..(ผู้ประเมินและผู้รับการประเมินตกลงกันเอง).............</p>
+        <div class="form-inline">
+                {{form8|crispy}}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-left:1rem;">Submit</button>
+</form>
 
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-{% include 'base/logoutmodal.html' %}
-<!-- End Logout Modal-->
 {% endblock %}
