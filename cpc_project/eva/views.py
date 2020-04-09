@@ -1,9 +1,8 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
-<<<<<<< HEAD
-<<<<<<< HEAD
 from .models import Sub_Cate, Main_Cate, Sub_Cate_Master, Document
 from .forms import SubCateFormUpdate, SubCateFormInsert, UserFormUpload
 from django.contrib import messages
@@ -11,20 +10,6 @@ from django.core.files.storage import FileSystemStorage
 from django.http import Http404
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
-=======
-from .models import Sub_Cate, Main_Cate
-from .forms import SubCateFormUpdate,SubCateFormInsert
-from django.contrib import messages
-from .master_method import Create_Prefix_FromInsert
-
->>>>>>> a46b7696b00ff3d135032458d42111dbe476e9c1
-=======
-from .models import Sub_Cate, Main_Cate
-from .forms import SubCateFormUpdate,SubCateFormInsert
-from django.contrib import messages
-from .master_method import Create_Prefix_FromInsert
-
->>>>>>> a46b7696b00ff3d135032458d42111dbe476e9c1
 
 # method check login
 def redircet_login(request):
@@ -55,7 +40,11 @@ def sub_category1_Insert(request):
         if request.method == 'GET':
             context = {}
             for topic in list_topics:
-                prefix,form = Create_Prefix_FromInsert('1',topic,request.user.username)
+                prefix = 'form'+str(topic)
+                SubNo = str('1')+str(topic)
+                form = SubCateFormInsert(prefix=prefix)
+                form.setValueSubNo(SubNo)
+                form.setValueUsername(request.user.username)
                 context[prefix] = form
             return render(request, "eva/sub_category1.html", context)
         else:
@@ -100,7 +89,11 @@ def sub_category2_Insert(request):
         if request.method == 'GET':
             context = {}
             for topic in list_topics:
-                prefix, form = Create_Prefix_FromInsert('2', topic, request.user.username)
+                prefix = 'form' + str(topic)
+                SubNo = str('2') + str(topic)
+                form = SubCateFormInsert(prefix=prefix)
+                form.setValueSubNo(SubNo)
+                form.setValueUsername(request.user.username)
                 context[prefix] = form
             return render(request, "eva/sub_category2.html", context)
         else:
@@ -145,7 +138,11 @@ def sub_category3_Insert(request):
         if request.method == 'GET':
             context = {}
             for topic in list_topics:
-                prefix,form = Create_Prefix_FromInsert('3',topic,request.user.username)
+                prefix = 'form' + str(topic)
+                SubNo = str('3') + str(topic)
+                form = SubCateFormInsert(prefix=prefix)
+                form.setValueSubNo(SubNo)
+                form.setValueUsername(request.user.username)
                 context[prefix] = form
             return render(request, "eva/sub_category3.html", context)
         else:
@@ -190,7 +187,11 @@ def sub_category4_Insert(request):
         if request.method == 'GET':
             context = {}
             for topic in list_topics:
-                prefix,form = Create_Prefix_FromInsert('4',topic,request.user.username)
+                prefix = 'form' + str(topic)
+                SubNo = str('4') + str(topic)
+                form = SubCateFormInsert(prefix=prefix)
+                form.setValueSubNo(SubNo)
+                form.setValueUsername(request.user.username)
                 context[prefix] = form
             return render(request, "eva/sub_category4.html", context)
         else:
@@ -235,7 +236,11 @@ def sub_category5_Insert(request):
         if request.method == 'GET':
             context = {}
             for topic in list_topics:
-                prefix, form = Create_Prefix_FromInsert('5', topic, request.user.username)
+                prefix = 'form'+str(topic)
+                SubNo = str('5')+str(topic)
+                form = SubCateFormInsert(prefix=prefix)
+                form.setValueSubNo(SubNo)
+                form.setValueUsername(request.user.username)
                 context[prefix] = form
             return render(request, "eva/sub_category5.html", context)
         else:

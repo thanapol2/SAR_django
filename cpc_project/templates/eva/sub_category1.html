@@ -3,6 +3,7 @@
 {% block title %}หัวข้อย่อยที่1{% endblock %}
 
 {% block content %}
+{% include 'base/nav_menu.html' %}
 {% load crispy_forms_tags %}
 <form action="" method="post">
     {% csrf_token %}
