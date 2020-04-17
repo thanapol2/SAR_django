@@ -30,3 +30,15 @@ class Sub_Cate(models.Model):
     class Meta:
          db_table = "EVA_EVA_DETAIL"
 
+
+class Up_Sub_Cate(models.Model):
+    seq_id = models.CharField(max_length=20, primary_key=True)
+    # sub_no = models.CharField(max_length=20, null = True)
+    sub_no = models.ForeignKey(Sub_Cate_Master,on_delete=models.CASCADE,to_field='sub_id',db_column='sub_no')
+    username = models.CharField(max_length=20, null = True)
+    weight = models.CharField(max_length=20, null = True)
+    target = models.CharField(max_length=20, null=True)
+    result = models.CharField(max_length=20, null=True)
+
+    class Meta:
+         db_table = "EVA_EVA_DETAIL"
