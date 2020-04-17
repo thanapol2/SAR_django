@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-{% block title %}EVA webapplication{% endblock %}
+{% block title %}upload{% endblock %}
 
 {% block main %}
 <div id="wrapper">
@@ -22,8 +22,20 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+
                 <!-- Page Heading -->
                 {% block content %}
+                {% load crispy_forms_tags %}
+                <h2>อัพโหลด</h2>
+                <br>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="document">
+                    <button type="submit">Upload file</button>
+                </form>
+                {% if url %}
+                    <p>Uploaded file: <a href="..{{ url }}">..{{ url }}</a></p>
+                {% endif %}
                 {% endblock %}
 
             </div>

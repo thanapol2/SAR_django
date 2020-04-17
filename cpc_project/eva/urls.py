@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 
 from . import views
@@ -21,4 +23,11 @@ urlpatterns = [
 
     path('sub_category5/', views.sub_category5_Insert, name='subcate5'),
     path('update_sub_category5/', views.sub_category5_Update, name='update_sub_category5'),
+
+    path('upload/', views.upload, name='upload'),
+    path('docs/', views.doc_list, name='doc_list'),
+    path('docs/upload', views.upload_doc, name='upload_doc'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

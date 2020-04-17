@@ -1,12 +1,15 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
-from .models import Sub_Cate, Main_Cate
-from .forms import SubCateFormUpdate,SubCateFormInsert
+from .models import Sub_Cate, Main_Cate, Sub_Cate_Master, Document
+from .forms import SubCateFormUpdate, SubCateFormInsert, UserFormUpload
 from django.contrib import messages
-from .master_method import Create_Prefix_FromInsert
-
+from django.core.files.storage import FileSystemStorage
+from django.http import Http404
+from django.contrib.sessions.models import Session
+from django.contrib.auth.models import User
 
 # method check login
 def redircet_login(request):
@@ -37,7 +40,11 @@ def sub_category1_Insert(request):
         if request.method == 'GET':
             context = {}
             for topic in list_topics:
-                prefix,form = Create_Prefix_FromInsert('1',topic,request.user.username)
+                prefix = 'form'+str(topic)
+                SubNo = str('1')+str(topic)
+                form = SubCateFormInsert(prefix=prefix)
+                form.setValueSubNo(SubNo)
+                form.setValueUsername(request.user.username)
                 context[prefix] = form
             return render(request, "eva/sub_category1.html", context)
         else:
@@ -82,7 +89,11 @@ def sub_category2_Insert(request):
         if request.method == 'GET':
             context = {}
             for topic in list_topics:
-                prefix, form = Create_Prefix_FromInsert('2', topic, request.user.username)
+                prefix = 'form' + str(topic)
+                SubNo = str('2') + str(topic)
+                form = SubCateFormInsert(prefix=prefix)
+                form.setValueSubNo(SubNo)
+                form.setValueUsername(request.user.username)
                 context[prefix] = form
             return render(request, "eva/sub_category2.html", context)
         else:
@@ -127,7 +138,11 @@ def sub_category3_Insert(request):
         if request.method == 'GET':
             context = {}
             for topic in list_topics:
-                prefix,form = Create_Prefix_FromInsert('3',topic,request.user.username)
+                prefix = 'form' + str(topic)
+                SubNo = str('3') + str(topic)
+                form = SubCateFormInsert(prefix=prefix)
+                form.setValueSubNo(SubNo)
+                form.setValueUsername(request.user.username)
                 context[prefix] = form
             return render(request, "eva/sub_category3.html", context)
         else:
@@ -172,7 +187,11 @@ def sub_category4_Insert(request):
         if request.method == 'GET':
             context = {}
             for topic in list_topics:
-                prefix,form = Create_Prefix_FromInsert('4',topic,request.user.username)
+                prefix = 'form' + str(topic)
+                SubNo = str('4') + str(topic)
+                form = SubCateFormInsert(prefix=prefix)
+                form.setValueSubNo(SubNo)
+                form.setValueUsername(request.user.username)
                 context[prefix] = form
             return render(request, "eva/sub_category4.html", context)
         else:
@@ -217,7 +236,11 @@ def sub_category5_Insert(request):
         if request.method == 'GET':
             context = {}
             for topic in list_topics:
-                prefix, form = Create_Prefix_FromInsert('5', topic, request.user.username)
+                prefix = 'form'+str(topic)
+                SubNo = str('5')+str(topic)
+                form = SubCateFormInsert(prefix=prefix)
+                form.setValueSubNo(SubNo)
+                form.setValueUsername(request.user.username)
                 context[prefix] = form
             return render(request, "eva/sub_category5.html", context)
         else:
@@ -253,5 +276,39 @@ def sub_category5_Update(request):
                     context[prefix].save()
             messages.success(request, "บันทึกข้อมูลเรียบร้อยแล้ว")
             return redirect('/eva/')
+    else:
+        return redirect('login')
+
+def upload(request):
+    if request.user.is_authenticated:  # check login
+        context = {}
+        if request.method == 'POST':
+            uploaded_file = request.FILES['document']
+            fs = FileSystemStorage()
+            name = fs.save(uploaded_file.name, uploaded_file)
+            context['url'] = fs.url(name)
+        return render(request, 'eva/upload.html', context)
+    else:
+        return redirect('login')
+
+def doc_list(request):
+    if request.user.is_authenticated:  # check login
+        docs = Document.objects.all()
+        return render(request, 'eva/doc_list.html', {'docs': docs})
+    else:
+        return redirect('login')
+
+def upload_doc(request):
+    if request.user.is_authenticated:  # check login
+        if request.method == 'POST':
+            form = UserFormUpload(request.POST, request.FILES)
+            form.setUploadUsername(request.user.username)
+            if form.is_valid():
+                form.save()
+                return redirect('/eva/docs/')
+        else:
+            form = UserFormUpload()
+            form.setUploadUsername(request.user.username)
+        return render(request, 'eva/upload_doc.html', {'form': form})
     else:
         return redirect('login')

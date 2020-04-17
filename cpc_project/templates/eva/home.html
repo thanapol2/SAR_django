@@ -6,6 +6,13 @@
 {% block content %}
 <h2>หัวข้อการประเมิน</h2>
 <br>
+{% if messages %}
+    {% for msg in messages %}
+        <div class="alert {{msg.level_tag}}" role="alert">
+            {{ msg.message }}
+        </div>
+    {% endfor %}
+{% endif %}
 <table class="table">
     <thead>
         <tr>
@@ -15,14 +22,6 @@
         </tr>
     </thead>
     <tbody>
-        {% if messages %}
-            {% for msg in messages %}
-                <div class="alert {{msg.level_tag}}" role="alert">
-                    {{ msg.message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-
         {% for row in list_main_cate %}
         <tr>
             <td>{{ row.main_topic_id }}</td>
