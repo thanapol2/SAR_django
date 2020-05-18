@@ -28,23 +28,10 @@ class Sub_Cate(models.Model):
     username = models.CharField(max_length=20, null = True)
     weight = models.CharField(max_length=20, null = True)
     target = models.CharField(max_length=20, null=True)
-
-    class Meta:
-         db_table = "EVA_EVA_DETAIL"
-
-
-class Up_Sub_Cate(models.Model):
-    seq_id = models.CharField(max_length=20, primary_key=True)
-    # sub_no = models.CharField(max_length=20, null = True)
-    sub_no = models.ForeignKey(Sub_Cate_Master,on_delete=models.CASCADE,to_field='sub_id',db_column='sub_no')
-    username = models.CharField(max_length=20, null = True)
-    weight = models.CharField(max_length=20, null = True)
-    target = models.CharField(max_length=20, null=True)
     result = models.CharField(max_length=20, null=True)
 
     class Meta:
          db_table = "EVA_EVA_DETAIL"
-
 
 class Document(models.Model):
     file_id = models.CharField(max_length=200, primary_key=True)
@@ -58,4 +45,4 @@ class Document(models.Model):
     def ___str__(self):
         return self.file_name
 
->>>>>>> 90bdbbc56d1e97f5d6a7bdfa9f7b3a81f1b13502
+
